@@ -23,7 +23,7 @@
 #include <sstream>
 #include <iostream>
 
-BOOL Connect(std::string address, short port, std::vector<CSocket*> &sockets, int id) {
+BOOL Connect(std::string address, short port, std::vector<std::unique_ptr<CSocket>> &sockets, int id) {
 	LONG lTO = CONNECT_TIMEO_MILISEC;
 	//std::cout << "Connecting" << endl;
 	std::ostringstream os;
@@ -64,7 +64,7 @@ BOOL Connect(std::string address, short port, std::vector<CSocket*> &sockets, in
 
 }
 
-BOOL Listen(std::string address, short port, std::vector<std::vector<CSocket*> > &sockets, int numConnections, int myID) {
+BOOL Listen(std::string address, short port, std::vector<std::vector<std::unique_ptr<CSocket>> > &sockets, int numConnections, int myID) {
 	// everybody except the last thread listenes
 	std::ostringstream os;
 

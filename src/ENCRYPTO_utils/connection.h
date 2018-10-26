@@ -20,13 +20,14 @@
 #define __CONNECTION_H__
 
 #include "typedefs.h"
+#include <memory>
 #include <string>
 #include <vector>
 
 // forward declaration
 class CSocket;
 
-BOOL Connect(std::string address, short port, std::vector<CSocket*> &sockets, int id);
-BOOL Listen(std::string address, short port, std::vector<std::vector<CSocket*> > &sockets, int numConnections, int myID);
+BOOL Connect(std::string address, short port, std::vector<std::unique_ptr<CSocket>> &sockets, int id);
+BOOL Listen(std::string address, short port, std::vector<std::vector<std::unique_ptr<CSocket>> > &sockets, int numConnections, int myID);
 
 #endif
